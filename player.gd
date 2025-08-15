@@ -3,19 +3,25 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 const JUMP_VELOCITY = -500.0
-var remainingJumps = 200
+const JUMP_AMOUNT = 2
+var remainingJumps = JUMP_AMOUNT
+var gravityModifier = 1;
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("flip"):
+		gravityModifier *= -1;
+		velocity.y = 5000 * gravityModifier;
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	else: 
-		remainingJumps = 200
+	
+	velocity += get_gravity() * delta * gravityModifier
+	if is_on_floor():
+		remainingJumps = JUMP_AMOUNT
 
-	# Handle jump.
+	# Handle jump
 	if (Input.is_action_just_pressed("jump") or (is_on_floor() and Input.is_action_pressed("jump"))) and remainingJumps != 0:
-		velocity.y = JUMP_VELOCITY
+		velocity.y = JUMP_VELOCITY * gravityModifier
 		remainingJumps -= 1;
 		
 
