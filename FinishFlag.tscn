@@ -7,6 +7,7 @@ resource_name = "FinishFlag"
 script/source = "extends Area2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+var triggered = false
 
 func _ready() -> void:
 	# Start flag animation if exists
@@ -17,14 +18,14 @@ func _ready() -> void:
 	connect(\"body_entered\", Callable(self, \"_on_body_entered\"))
 
 func _on_body_entered(body: Node) -> void:
+	if triggered:
+		return  # ignore if already triggered
 	if body.is_in_group(\"Player\"):
-		print(\"Player reached finish flag!\")
-		
-		var game_node = get_tree().get_current_scene()  # THIS is Game.tscn
-		if game_node and game_node.has_method(\"next_level\"):
-			game_node.next_level()
-		else:
-			print(\"Error: Game node has no next_level()\")
+		triggered = true
+		var game = get_tree().get_current_scene()
+		print(\"Level:\", game.current_level_index, \" Player touched flag\")
+		if game and game.has_method(\"next_level\"):
+			game.next_level()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xylb4"]

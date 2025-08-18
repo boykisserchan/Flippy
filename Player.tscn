@@ -11,6 +11,16 @@ var gravityModifier = 1
 
 func _ready() -> void:
 	add_to_group(\"Player\")
+	
+func _process(delta: float) -> void:
+	if (Input.is_action_just_pressed(\"skip\")):
+		print(\"skip lozer\")
+		var game_node = get_tree().get_current_scene()  # THIS is Game.tscn
+		if game_node and game_node.has_method(\"next_level\"):
+			game_node.next_level()
+		else:
+			print(\"Error: Game node has no next_level()\")
+			
 
 func _physics_process(delta) -> void:
 	# Apply gravity
