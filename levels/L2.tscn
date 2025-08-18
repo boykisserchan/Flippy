@@ -63,6 +63,14 @@ sources/8 = SubResource("TileSetAtlasSource_1u8w0")
 
 [node name="Node" type="Node"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 170.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 80
+text = "Level 2: Trust Fall"
+
 [node name="FinishFlag" parent="." instance=ExtResource("1_qcegm")]
 position = Vector2(946, 450)
 

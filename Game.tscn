@@ -39,7 +39,8 @@ func load_current_level():
 func next_level():
 	current_level += 1
 	if current_level > LEVEL_COUNT:
-		current_level = 1
+		get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+		return
 	load_current_level()
 "
 
