@@ -10,7 +10,7 @@ script/source = "extends Node2D
 @onready var player = $Player
 
 var current_level = 1        # tracks the current level
-const LEVEL_COUNT = 5        # total number of levels
+const LEVEL_COUNT = 3        # total number of levels
 
 func _ready():
 	current_level = 1;
@@ -41,7 +41,7 @@ func next_level():
 	current_level += 1
 	print(current_level)
 	if current_level > LEVEL_COUNT:
-		get_tree().change_scene_to_file(\"res://main_menu.tscn\")
+		get_tree().change_scene_to_file(\"res://Finish.tscn\")
 		return
 	load_current_level()
 "

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://c7nsknh55kw81"]
+[gd_scene load_steps=19 format=4 uid="uid://n7gai28yxmv7"]
 
 [ext_resource type="PackedScene" uid="uid://gkwcdg1wp6qv" path="res://FinishFlag.tscn" id="1_hurys"]
 [ext_resource type="Texture2D" uid="uid://b3qktulj46f3q" path="res://Textures16x16/1a.png" id="2_f6013"]
