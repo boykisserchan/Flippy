@@ -42,7 +42,7 @@ alignment = 1
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 200
-text = "Fliqqy"
+text = "Fl!ppy"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
@@ -52,3 +52,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 text = "Start"
 script = ExtResource("1_06t4h")
+
+[node name="Credits" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "A game by @boykisserchan on Github"
+horizontal_alignment = 1

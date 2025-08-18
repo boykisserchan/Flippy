@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baegqn6txdi8s"
-path="res://.godot/imported/atchannel.png-576fbf08fb519cfcbd8beacfd249a625.ctex"
+uid="uid://cc7qgp33ufqbe"
+path="res://.godot/imported/7e.png-f21bad1c42a27bb0c1d32317f8a768a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://atchannel.png"
-dest_files=["res://.godot/imported/atchannel.png-576fbf08fb519cfcbd8beacfd249a625.ctex"]
+source_file="res://Textures16x16/7e.png"
+dest_files=["res://.godot/imported/7e.png-f21bad1c42a27bb0c1d32317f8a768a7.ctex"]
 
 [params]
 
