@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://gkwcdg1wp6qv"]
+
+[ext_resource type="Texture2D" uid="uid://ccfj3kyi5xney" path="res://flag animation.png" id="1_c8cll"]
+
+[sub_resource type="GDScript" id="GDScript_c8cll"]
+resource_name = "FinishFlag"
+script/source = "extends Area2D
+
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	# Start flag animation if exists
+	if anim:
+		anim.play(\"default\")
+
+	# Connect when player touches
+	connect(\"body_entered\", Callable(self, \"_on_body_entered\"))
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group(\"Player\"):
+		print(\"Player reached finish flag!\")
+		
+		var game_node = get_tree().get_current_scene()  # THIS is Game.tscn
+		if game_node and game_node.has_method(\"next_level\"):
+			game_node.next_level()
+		else:
+			print(\"Error: Game node has no next_level()\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xylb4"]
+atlas = ExtResource("1_c8cll")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldh0o"]
+atlas = ExtResource("1_c8cll")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eho8d"]
+atlas = ExtResource("1_c8cll")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0qsq"]
+atlas = ExtResource("1_c8cll")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71fqj"]
+atlas = ExtResource("1_c8cll")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3otb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xylb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldh0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eho8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0qsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71fqj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8cll"]
+size = Vector2(60, 60)
+
+[node name="FinishFlag" type="Area2D"]
+script = SubResource("GDScript_c8cll")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s3otb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_c8cll")

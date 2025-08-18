@@ -1,7 +1,5 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpdxhgxom7bt6"]
 
-[ext_resource type="Script" uid="uid://b75yluc0n32a0" path="res://button.gd" id="1_06t4h"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0.309804, 0.690196, 0.443137, 1)
 corner_radius_top_left = 10
@@ -15,6 +13,25 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="GDScript" id="GDScript_rhts7"]
+resource_name = "Button"
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+	pressed.connect(
+		func():
+			get_tree().change_scene_to_file(\"res://Game.tscn\")
+	)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -51,7 +68,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/hover = SubResource("StyleBoxFlat_06t4h")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7vrkn")
 text = "Start"
-script = ExtResource("1_06t4h")
+script = SubResource("GDScript_rhts7")
 
 [node name="Credits" type="Label" parent="VBoxContainer"]
 layout_mode = 2

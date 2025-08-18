@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://j6qll5ydet04"]
+
+[ext_resource type="PackedScene" uid="uid://cudb3ax7udtio" path="res://Player.tscn" id="1_wbfu4"]
+
+[sub_resource type="GDScript" id="GDScript_xkndl"]
+resource_name = "Game"
+script/source = "extends Node2D
+
+@onready var level_holder = $Level
+@onready var player = $Player
+
+var current_level = 1        # tracks the current level
+const LEVEL_COUNT = 2        # total number of levels
+
+func _ready():
+	load_current_level()
+
+func load_current_level():
+	# Remove old level
+	if level_holder.get_child_count() > 0:
+		level_holder.get_child(0).queue_free()
+
+	# Load new level
+	var path = \"res://Levels/L\" + str(current_level) + \".tscn\"
+	var new_level = load(path).instantiate()
+	level_holder.add_child(new_level)
+
+	# Move player to SpawnPoint
+	var spawn = new_level.get_node_or_null(\"SpawnPoint\")
+	if spawn:
+		player.global_position = spawn.global_position
+		player.velocity = Vector2.ZERO
+		player.gravityModifier = 1
+		player.rotation_degrees = 0
+		player.up_direction = Vector2.UP
+	else:
+		print(\"SpawnPoint not found in \", path)
+
+func next_level():
+	current_level += 1
+	if current_level > LEVEL_COUNT:
+		current_level = 1
+	load_current_level()
+"
+
+[node name="Game" type="Node2D"]
+script = SubResource("GDScript_xkndl")
+
+[node name="Player" parent="." instance=ExtResource("1_wbfu4")]
+
+[node name="Level" type="Node2D" parent="."]

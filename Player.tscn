@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://cudb3ax7udtio"]
+
+[ext_resource type="Texture2D" uid="uid://ckc565l335dmr" path="res://icon.svg" id="2_kne1u"]
+
+[sub_resource type="GDScript" id="GDScript_xhfnw"]
+resource_name = "Player"
+script/source = "extends CharacterBody2D
+
+const SPEED = 300
+var gravityModifier = 1
+
+func _ready() -> void:
+	add_to_group(\"Player\")
+
+func _physics_process(delta) -> void:
+	# Apply gravity
+	velocity += get_gravity() * delta * gravityModifier
+
+	# Horizontal movement
+	var dir = Input.get_axis(\"left\",\"right\")
+	if dir != 0:
+		velocity.x = dir * SPEED * gravityModifier
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	# Flip gravity
+	if Input.is_action_just_pressed(\"flip\") and is_on_floor():
+		gravityModifier *= -1
+		velocity.y = 1000 * gravityModifier
+		rotation_degrees += 180
+		up_direction *= -1
+
+	move_and_slide()
+
+	# Reset if fallen
+	if position.y < -1500 or position.y > 1500 or Input.is_action_just_pressed(\"reset\"):
+		get_parent().load_current_level()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = SubResource("GDScript_xhfnw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_kne1u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e80uo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
