@@ -23,7 +23,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(\"Player\"):
 		triggered = true
 		var game = get_tree().get_current_scene()
-		print(\"Level:\", game.current_level_index, \" Player touched flag\")
+		print(\"Level:\", game.current_level, \" Player touched flag\")
 		if game and game.has_method(\"next_level\"):
 			game.next_level()
 "

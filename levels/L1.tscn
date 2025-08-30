@@ -76,7 +76,6 @@ tile_map_data = PackedByteArray("AAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAA
 tile_set = SubResource("TileSet_0odxb")
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
-position = Vector2(0, -24)
 
 [node name="FinishFlag" parent="." instance=ExtResource("9_m3hgf")]
 position = Vector2(994, 4)

@@ -13,7 +13,6 @@ config_version=5
 config/name="Jumpstart"
 run/main_scene="uid://cpdxhgxom7bt6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [editor_plugins]
 

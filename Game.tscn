@@ -22,7 +22,7 @@ func load_current_level():
 		level_holder.get_child(0).queue_free()
 
 	# Load new level
-	var path = \"res://Levels/L\" + str(current_level) + \".tscn\"
+	var path = \"res://levels/L\" + str(current_level) + \".tscn\"
 	var new_level = load(path).instantiate()
 	level_holder.add_child(new_level)
 

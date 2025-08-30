@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cudb3ax7udtio"]
 
-[ext_resource type="Texture2D" uid="uid://ckc565l335dmr" path="res://icon.svg" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://boftbeokdlt6u" path="res://rock-sticker.png" id="1_xhfnw"]
 
 [sub_resource type="GDScript" id="GDScript_xhfnw"]
 resource_name = "Player"
@@ -12,7 +12,7 @@ var gravityModifier = 1
 func _ready() -> void:
 	add_to_group(\"Player\")
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (Input.is_action_just_pressed(\"skip\")):
 		print(\"skip lozer\")
 		var game_node = get_tree().get_current_scene()  # THIS is Game.tscn
@@ -48,14 +48,15 @@ func _physics_process(delta) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e80uo"]
-size = Vector2(32, 32)
+size = Vector2(58, 32)
 
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_xhfnw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_kne1u")
+position = Vector2(2.86102e-06, -2.23517e-08)
+scale = Vector2(0.114847, 0.114847)
+texture = ExtResource("1_xhfnw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e80uo")
